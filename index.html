@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>整站练习（妙味）</title>
+    <style type="text/css">
+        html,body,#top,#header,h1,h2,h3,h4,p,ul,li,dl,dt,dd,a,input,span,img{margin:0;padding:0; font-family:"Arial"}
+        body{background:url("img/body-bg.png") repeat-x #fff;}
+        a{text-decoration:none;}
+        a:hover{text-decoration:underline;}
+        #top li,a{float:left;}
+        li{list-style:none;}
+
+        #top{width:960px;height:30px;margin:0 auto;}
+        .top-menu{float:left;}
+        .top-menu li{background:url(img/top-ico.png)
+                       right 15px no-repeat;line-height:30px;
+                       margin-right:10px;padding-right:15px;font-size:13px;}
+                       /*以上字体的 size和family要分开写，不然会出问题*/
+        .top-menu .no-dot{background-image:none;}
+        .top-menu a{color:#c0c0c0;float:left;}
+
+        .top-bar{float:right;height:30px;}
+        .top-bar li{line-height:30px;font-size:13px;color:#fff;}
+        .top-bar .phone{background:url(img/top-ico.png) no-repeat 0 -17px;
+                          font-weight:bold;padding-left:31px;line-height:30px;}
+        .top-bar .help{background:url(img/top-ico.png) no-repeat 0 -47px;
+                         font-weight:bold;padding-left:40px;margin:0 16px 0 36px;}
+        .top-bar a{color:#fff;}
+        .top-bar img{margin-left:14px;}
+
+
+        #header{width:960px;height:100px;margin:0 auto;position:relative;
+                  background:url(img/header-bg.png) no-repeat;}
+        #header .shopping{background:url(img/shopping-bag.png) no-repeat 0 8px;
+                             width:260px;height:100px;}
+        #header .shopping p{color:#f7f7f7;font-size:20px;padding:30px 0 0 84px;}
+        #header .shopping a{background:url(img/shopping-btn.png) no-repeat;
+                              width:114px;height:24px;color:#ffc200;font-weight:bold;
+                              font-size:15px;display:block;text-align:center;line-height:24px;
+                              margin:10px 0 0 110px;}
+        #header h1{width:240px;height:100px;position:absolute;top:0;left:50%;margin-left:-120px;}
+        #header .search{position:absolute;top:33px;right:0;}
+        .search{width:292px;height:30px;background:url(img/search-bg.png) no-repeat;}
+        .search .text{width:230px;height:30px;background:none;border:none;
+                       font-size:14px;color:#666;padding-left:20px;outline:none;}
+                       /*utline:none输入框获取焦点时，去掉边框轮廓*/
+        .search .btn{width:42px;height:30px;background:none;border:none;}
+
+
+        #nav,#nav ul{width:960px;height:44px;margin:0 auto;}
+        #nav li{height:28px;display:inline-block;font-size:15px;
+                 margin:8px 6px 0 6px;font-weight:200;}
+        #nav a{text-decoration:none;border-radius:4px;color:#fff;padding:0 12px;line-height:28px}
+        #nav .active{border-radius:4px;}
+        #nav .active,#nav a:hover{background:url(img/nav-hover-bg.png) repeat-x
+                        0 -56px;}
+
+
+        #content{width:960px;margin:25px auto;box-shadow:0 -15px 26px #bdbab0;
+                   border-radius:26px 26px 0 0;background:#fff;}
+       /* html,body,#content{height:100%;}*/
+
+        #banner .bg,#banner h2,#banner p{float:left;}
+        #banner li{display:none;}
+        #banner li.first{display:block;}
+        #banner img{width:940px;height:300px;margin:10px 10px 0;}
+        #banner .bg{width:940px;height:52px;background:#000;
+               filter:alpha(opacity:80);opacity:0.7;margin:-56px 10px 0 10px;}
+        #banner h2{width:268px;line-height:52px;font-size:25px;color:#ffc600;text-align:center; }
+        #banner p{width:640px;line-height:16px;font-size:13px;color:#fcc;margin-top:10px;}
+
+        #main{width:940px;margin:26px auto 0;}
+        #side{width:208px;float:left;}
+
+
+        #side .menu h4{line-height:30px;text-align:center;color:#fff;border-radius:9px 9px 0 0;
+                         background:url(img/side-menu-bg.png) repeat-x;}
+        #side .menu ul{background:#ffeeb7;padding:14px 8px;border-radius:0 0 9px 9px;
+                         border:1px solid #f3dc94;border-top:none;}
+        #side .menu a{width:192px;height:30px;line-height:30px;text-indent:23px;color:#434343;
+                        border-bottom:1px solid #fff;font-size:12px;font-weight:bold;}
+        #side .menu a:hover{color:#b20e00;text-decoration:none;background:#fe7;}
+        #wrap{width:704px;float:right;}
+/* 清除了banner和main的浮动       */
+        .clear{zoom:1;}/*IE7中缩放大小的功能，1为原本大小，0.5为一半,父级有宽时可不写*/
+        .clear:after{content:'';display:block;clear:both;}
+
+        #side .join{background:#f0f0ec;border-radius:9px;margin:14px 0 20px 0;
+                      border:1px solid #dfdfdd;}
+        #side .join h4{font-size:15px;line-height:18px;margin:12px 16px;font-weight:bold;color:#666;}
+        #side .join-text{width:174px;height:24px;font-size:14px;margin-left:15px;border:1px inset #f0f0ec;}
+        #side .join-btn{background:url(img/join-btn-bg.png) repeat-x;height:26px;
+                          border-radius:4px;padding:5px 10px;border:none;font-weight:bold;
+                          color:#fff;margin:8px 56px;font-size:15px;}
+        #side .join ul{padding:8px;}
+        #side .join li{width:192px;height:48px;border-top:1px solid #fff;line-height:48px;}
+        #side .join img{float:left;margin:8px 16px 8px 6px;}
+        #side .join a{float:left;font-size:13px;color:#666;width:122px;line-height:14px;}
+        #side .join .space1{margin-top:16px;}
+        #side .join .space2{margin-top:10px;}
+
+        #side .pay{margin:30px 0 0 14px;}
+
+        .select{height:20px;}
+        .select dl{float:left;}
+        .select dt{float:left;font-size:12px;font-weight:bold;line-height:18px;}
+        .select dd{float:left;position:relative;width:109px;height:20px;margin:0 12px 0 2px;}
+        .select h4{width:107px;height:17px;border:1px solid #ccc;
+                    font-size:12px;font-weight:normal;text-indent:5px;}
+        .select a{position:absolute;right:0;top:0;width:19px;height:19px;background:url(img/sele-btn.png)
+                   0 -19px;z-index:3;}
+        .select a:hover{background:url(img/sele-btn.png) -19px 0;}
+        .select ul{width:107px;border:1px solid #ccc;display:none;}
+        .select li{font-size:13px;line-height:18px;text-indent:5px;}
+        .select p{float:right;color:#747;font-size:12px;}
+        .select span{padding:6px;}
+
+
+        .pic-list h3,.scroll h3{font-size:18px;color:#666;margin:24px  0 10px 0;}
+        .pic-list ul{width:730px;overflow:hidden;}
+        .pic-list li{width:182px;height:199px;float:left;}
+        .pic-list a{width:156px;height:116px;display:block;
+                      border:1px solid #e0e0e0;margin-bottom:6px;}
+        .pic-list a:hover{border:1px solid #2aabd2;}
+        .pic-list h4{font-size:15px;color:#666;}
+        .pic-list p{font-size:13px;}
+        .pic-list span{color:#eb0303;}
+
+        .page-number{padding-left:230px;border-bottom:1px solid #cdcdc8;padding-bottom:6px;}
+        .page-number a{display:inline-block;height:20px;line-height:20px;padding:0 6px;
+                      font-size:12px;color:#b20e00;margin:0 2px;}
+        .page-number a:hover,.page-number .a-first{background:#b20e00;color:#fff;text-decoration:none;}
+        .page-number span{font-family:SimSuncss;}/*宋体*/
+
+        .scroll{}
+        .scroll-list{width:686px;height:180px;border:1px solid #c0c0c0;border-radius:5px;
+                       box-shadow:0 0 12px #bbb;margin:0 auto;position:relative;}
+        .scroll-list .prev,.scroll-list .next{width:35px;height:43px;position:absolute;top:66px;}
+        .scroll-list .prev{background:url(img/scroll-btn-bg.png);left:-8px;}
+        .scroll-list .next{background:url(img/scroll-btn-bg.png) 0 -43px;right:-8px;}
+        .scroll-list .list-wrap{width:618px;height:144px;margin:24px auto;}
+        .scroll-list .list-wrap ul{height:136px;overflow:hidden;}
+        .scroll-list .list-wrap li{width:200px;display:inline-block;}
+        .scroll-list .list-wrap a{display:block;width:144px;height:98px;margin:0 28px 10px 30px;}
+        .scroll-list .list-wrap p{text-align:center;width:144px;font-size:12px;line-height:14px;margin:0 auto;}
+
+        #footer{height:302px;background:url(img/footer-bg.png) repeat-x;}
+        .foot-info{width:960px;height:60px;margin:0 auto;}
+        .foot-info a{height:60px;margin:0 8px;}
+        .foot-info p{font-size:14px;font-weight:bold;color:#cbcbcb;
+                          height:60px;float:right;line-height:60px;}
+        .foot-info .search{float:right;margin-top:15px;}
+
+        .foot-bottom{width:940px;padding-top:60px;margin:0 auto;}
+        .foot-bottom dl{width:186px;text-indent:8px;float:left;}
+        .foot-bottom dt{font-size:15px;font-weight:bold;margin:28px 0 20px;color:#fff;}
+        .foot-bottom dd{width:186px;height:22px;line-height:22px;}
+        .foot-bottom a{display:block;height:22px;font-size:12px;color:#cfcfcf;}
+        .foot-bottom .space{margin-bottom:18px;}
+        .foot-bottom span{color:#fc0;}
+    </style>
+</head>
+<body>
+    <div id="top">
+        <ul class="top-menu">
+            <li><a href="#">Account Sign In</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Buyers Guide</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li class="no-dot"><a href="#">Contact</a></li>
+        </ul>
+        <ul class="top-bar">
+            <li class="phone">010-8888 8888</li>
+            <li class="help"><a href="#">Live Help</a></li>
+            <li><a href="#"><img src="img/top-CA.png" alt="国旗" title="加拿大"/></a></li>
+            <li><a href="#"><img src="img/top-USA.png" alt="国旗" title="美国"/></a></li>
+        </ul>
+    </div>
+    <div id="header">
+        <div class="shopping">
+            <p>0 items in your bag</p>
+            <a href="#">Check Out</a>
+        </div>
+        <h1 title="ECOMMERCE WEBSITE"><a href="#"><img src="img/header-title.png"/></a></h1>
+        <div class="search">
+            <form action="">
+                <input class="text" type="text" value="Search website"/>
+                <input class="btn" type="submit" value=""/>
+            </form>
+        </div>
+    </div>
+    <div id="nav">
+        <ul>
+            <li class="active"><a href="#">HOME</a></li>
+            <li><a href="#">LATEST ARRIVALS</a></li>
+            <li><a href="#">MEN'S</a></li>
+            <li><a href="#">WOMEN'S</a></li>
+            <li><a href="#">KIDS</a></li>
+            <li><a href="#">BRANDS</a></li>
+            <li><a href="#">SALE</a></li>
+            <li><a href="#">GIFT CARDS</a></li>
+            <li><a href="#">FREEBIES</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="banner" class="clear">
+            <ul>
+                <li class="first"><a href="#"><img src="img/banner.gif" alt="广告图"></a></li>
+                <li><a href="#"><img src="img/banner.gif" alt="广告图"></a></li>
+                <li><a href="#"><img src="img/banner.gif" alt="广告图"></a></li>
+            </ul>
+            <div class="bg">
+                <h2>PRODUCT TITLE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras suscipit lacus dapibus ante mattis in adipiscing nibh placerat.
+                    Cras bibendum porta diam, non dignissim sapien malesuada vitae.</p>
+            </div>
+        </div>
+        <div id="main" class="clear">
+            <div id="side">
+                <div class="menu">
+                    <h4>Browse Categories</h4>
+                    <ul class="clear">
+                        <li><a href="#">Lorem ipsum dolor sit</a></li>
+                        <li><a href="#">Amet consectetur</a></li>
+                        <li><a href="#">Adipiscin elit</a></li>
+                        <li><a href="#">Cras suscipit lacus</a></li>
+                        <li><a href="#">Dapibus ante mattis</a></li>
+                        <li><a href="#">Adipiscing nibh placerat</a></li>
+                        <li><a href="#">Cras bibendum</a></li>
+                        <li><a href="#">Porta diam elit</a></li>
+                        <li><a href="#">Adipiscing nibh placerat</a></li>
+                        <li><a href="#">Cras bibendum</a></li>
+                        <li><a href="#">Porta diam elit</a></li>
+                    </ul>
+                </div>
+                <div class="join">
+                    <h4>Join our newsletter list to get the latest updates</h4>
+                    <form action="">
+                        <input class="join-text" type="text" value="">
+                        <input class="join-btn" type="submit" value="Join Now">
+                    </form>
+                     <ul class="clear">
+                         <li><img src="img/join-ico-t.png" alt=""><a class="space1" href="#">Follow us on Twitter</a></li>
+                         <li><img src="img/join-ico-f.png" alt=""><a class="space2" href="#">Become our fan on Facebook</a></li>
+                         <li><img src="img/join-ico-in.png" alt=""><a class="space2" href="#">Connect with us on LinkedIn</a></li>
+                         <li><img src="img/join-ico-email.png" alt=""><a class="space2" href="#">Send us your email enquiries</a></li>
+                     </ul>
+                </div>
+                <div class="pay">
+                    <a href="#"><img src="img/side-pay.gif" alt=""></a>
+                </div>
+            </div>
+            <div id="wrap">
+                <div class="select">
+                    <dl>
+                        <dt>Sort by:</dt>
+                        <dd>
+                            <h4>Ascending</h4>
+                            <a href="#"></a>
+                            <ul>
+                                <li>menu1</li>
+                                <li>menu2</li>
+                                <li>menu3</li>
+                                <li>menu4</li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <h4>Product Name</h4>
+                            <a href="#"></a>
+                            <ul>
+                                <li>menu5</li>
+                                <li>menu6</li>
+                                <li>menu7</li>
+                                <li>menu8</li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <h4>Ascending</h4>
+                            <a href="#"></a>
+                            <ul>
+                                <li>menu9</li>
+                                <li>menu10</li>
+                                <li>menu11</li>
+                                <li>menu12</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <p>
+                        <strong>Items per page :</strong>
+                        <span>12</span>/<span>20</span>/
+                        <span>30</span>/<span>50</span>
+                    </p>
+                </div>
+                <div class="pic-list">
+                    <h3>OUR PRODUCTS</h3>
+                    <ul class="clear">
+                        <li>
+                            <a href=""><img src="img/pic-list/list1.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list2.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list3.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list4.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list4.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list1.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list2.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list3.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list4.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list3.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list2.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                        <li>
+                            <a href=""><img src="img/pic-list/list1.gif" alt=""></a>
+                            <h4>Product Name</h4>
+                            <p>Price:<span>$12.88</span></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="page-number clear">
+                        <a  class="a-first" href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">NEXT<span> ></span></a>
+                        <a href="#">LAST<span> >></span></a>
+                </div>
+                <div class="scroll">
+                    <h3>FEATURED PRODUCTS</h3>
+                    <div class="scroll-list">
+                        <a class="prev" href="#"></a>
+                        <a class="next" href=""></a>
+                        <div class="list-wrap">
+                            <ul>
+                                <li>
+                                    <a href=""><img src="img/scroll-list/scroll-1.gif" alt=""></a>
+                                    <p>Elegant MP3 player skin PSD download</p>
+                                </li>
+                                <li>
+                                    <a href=""><img src="img/scroll-list/scroll-2.gif" alt=""></a>
+                                    <p>Download shopping bag & icons (PSD & PNG)</p>
+                                </li>
+                                <li>
+                                    <a href=""><img src="img/scroll-list/scroll-3.gif" alt=""></a>
+                                    <p>High resolution abstract bokeh background</p>
+                                </li>
+                                <li>
+                                    <a href=""><img src="img/scroll-list/scroll-1.gif" alt=""></a>
+                                    <p>Elegant MP3 player skin PSD download</p>
+                                </li>
+                                <li>
+                                    <a href=""><img src="img/scroll-list/scroll-2.gif" alt=""></a>
+                                    <p>Download shopping bag & icons (PSD & PNG)</p>
+                                </li>
+                                <li>
+                                    <a href=""><img src="img/scroll-list/scroll-3.gif" alt=""></a>
+                                    <p>High resolution abstract bokeh background</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="foot-info clear">
+            <a href="#"><img src="img/foot-ico1.gif" alt=""><p>Shop online with us safely & securely</p></a>
+            <a href="#"><img src="img/foot-ico2.gif" alt=""><p>We ship your orders anywhere!</p></a>
+            <div class="search">
+                <form action="">
+                    <input class="text" type="text" value="Search website"/>
+                    <input class="btn" type="submit" value=""/>
+                </form>
+            </div>
+            <div class="foot-bottom clear">
+                <dl>
+                    <dt>Company</dt>
+                    <dd><a href="">Home</a></dd>
+                    <dd><a href="">About Us</a></dd>
+                    <dd><a href="">Blog</a></dd>
+                    <dd><a href="">Latest News</a></dd>
+                    <dd><a href="">Login</a></dd>
+                    <dd><a href="">Join Us</a></dd>
+                </dl>
+                <dl>
+                    <dt>Categories</dt>
+                    <dd><a href="">Lorem ipsum dolor sit</a></dd>
+                    <dd><a href="">Amet consectetur</a></dd>
+                    <dd><a href="">Adipiscin elit</a></dd>
+                    <dd><a href="">Cras suscipit lacus</a></dd>
+                    <dd><a href="">Dapibus ante mattis</a></dd>
+                    <dd><a href="">Adipiscing nibh placerat</a></dd>
+                </dl>
+                <dl>
+                    <dt>Information</dt>
+                    <dd><a href="">My Account</a></dd>
+                    <dd><a href="">Rewards</a></dd>
+                    <dd><a href="">Terms & Conditions</a></dd>
+                    <dd><a href="">Buying Guide</a></dd>
+                    <dd><a href="">FAQ</a></dd>
+                </dl>
+                <dl>
+                    <dt>Social Network</dt>
+                    <dd><a href="">My Account</a></dd>
+                    <dd><a href="">Rewards</a></dd>
+                    <dd><a href="">Terms & Conditions</a></dd>
+                    <dd><a href="">Buying Guide</a></dd>
+                    <dd><a href="">FAQ</a></dd>
+                </dl>
+                <dl>
+                    <dt>Contact Us</dt>
+                    <dd><a href="">Phone: 1.234.567.8901</a></dd>
+                    <dd><a href="">Toll-Free: 1.234.567.8901</a></dd>
+                    <dd><a href="">Fax: 1.234.567.8901</a></dd>
+                    <dd class="space"><a href="">Email: <span>Send us an email</span></a></dd>
+                    <dd><a href="">MON - SAT 	9am to 7:30pm</a></dd>
+                    <dd><a href="">Sundays, holidays closed</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
